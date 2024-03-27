@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guessing Game</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+}
+
+input[type="text"] {
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+p#message {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+p#message.correct {
+  color: green;
+}
+
+p#message.incorrect {
+  color: red;
+}
+</style>
+</head>
+<body>
+<h1>Guessing Game</h1>
+<p>Guess a number between 500 and 1000:</p>
+<input type="text" id="guessField">
+<button onclick="checkGuess()">Submit Guess</button>
+<p id="message"></p>
+
+<script>
+ 
+  const randomNumber = Math.floor(Math.random() * 500) + 500;
+
+ 
+  const guessField = document.getElementById('guessField');
+  const message = document.getElementById('message');
+
+  function checkGuess() {
+    const userGuess = parseInt(guessField.value);
+    if (userGuess === randomNumber) {
+      message.textContent = 'Congratulations! You guessed the correct number!';
+      message.style.color = 'green';
+      guessField.disabled = true;
+    } else if (userGuess < randomNumber) {
+      message.textContent = 'Too low! Try again.';
+      message.style.color = 'red';
+    } else if (userGuess > randomNumber) {
+      message.textContent = 'Too high! Try again.';
+      message.style.color = 'red';
+    }
+    guessField.value = '';
+    guessField.focus();
+  }
+</script>
+
+
+</body>
+</html>
